@@ -17,9 +17,6 @@ describe("<App/>", () => {
     test("should render correctly", () => {
       const component = shallow(<App />);
       expect(component).toMatchSnapshot();
-      expect(component.find("header").exists()).toBe(true);
-      expect(component.find("header").text()).toEqual("React App");
-      expect(component.find("p").exists()).toBe(true);
     });
   });
 });
