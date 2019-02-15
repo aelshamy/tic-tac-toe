@@ -1,0 +1,25 @@
+.game {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+}
+
+.square {
+    background: #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 74px;
+    margin-left: -1px;
+    margin-top: -1px;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.square:focus {
+    outline: none;
+}
