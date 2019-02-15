@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Game/> it will match the snapshot 1`] = `undefined`;
+
+exports[`<Game/> render() should render correctly 1`] = `
+<div
+  className="game"
+>
+  <Board
+    onClick={[Function]}
+    values={
+      Array [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+      ]
+    }
+  />
+</div>
+`;
