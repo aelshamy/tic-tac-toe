@@ -22,12 +22,9 @@ class Board extends Component {
   }
 
   renderSquare(idx) {
+    const value = this.props && this.props.values ? this.props.values[idx] : "";
     return (
-      <Square
-        key={idx}
-        value={this.props.values[idx]}
-        onClick={() => this.props.onClick(idx)}
-      />
+      <Square key={idx} value={value} onClick={() => this.props.onClick(idx)} />
     );
   }
 
