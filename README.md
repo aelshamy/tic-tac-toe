@@ -6,4 +6,4 @@ Tic Tac Toe game using React
 
 - `git clone`
 - `npm install`
-- `npm run dev`
+- `npm start`
