@@ -20,6 +20,31 @@
     flex-direction: column;
 }
 
-.square:focus {
+.square:focus,
+.result button:focus {
     outline: none;
+}
+
+.result {
+    text-align: center;
+}
+
+.result h3 {
+    font-size: 40px;
+}
+
+.result h3.winner {
+    color: green;
+}
+
+.result h3.loser {
+    color: red;
+}
+
+.result button {
+    font-size: 40px;
+    border: 1px solid #999;
+    background: azure;
+    font-weight: bold;
+    cursor: pointer;
 }
