@@ -47,7 +47,7 @@ describe("<Game/>", () => {
     test("should return if user clicked on existed square", () => {
       game.state.values = [null, "X", null];
       spyOn(game, "setState");
-      const result = game.handleClick(1);
+      game.handleClick(1);
       expect(game.setState).not.toHaveBeenCalled();
     });
 
