@@ -99,7 +99,7 @@ describe("<Board/>", () => {
     });
     test("should call create board", () => {
       spyOn(board, "createBoard");
-      const result = board.render();
+      board.render();
       expect(board.createBoard).toHaveBeenCalledWith(3, 3);
     });
     test("should render correctly", () => {

@@ -60,7 +60,7 @@ class Game extends Component {
             {playerIsWinner ? (
               <h3 className="winner">Good Job You won :)</h3>
             ) : (
-              <h3 className="loser">Sorry, you didn't make it this time :(</h3>
+              <h3 className="loser">Sorry, you did not make it this time :(</h3>
             )}
 
             <button onClick={this.resetGame}>Play Again</button>

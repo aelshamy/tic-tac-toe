@@ -40,7 +40,7 @@ describe("<Game/>", () => {
     test("should return if there is a winner", () => {
       spyOn(game, "calculateWinner").and.returnValue("X");
       spyOn(game, "setState");
-      const result = game.handleClick(1);
+      game.handleClick(1);
       expect(game.setState).not.toHaveBeenCalled();
     });
 
@@ -56,7 +56,7 @@ describe("<Game/>", () => {
       const index = 1;
       const expectedValues = [...game.state.values];
       expectedValues[index] = "X";
-      const result = game.handleClick(index);
+      game.handleClick(index);
       expect(game.setState).toHaveBeenCalledWith({
         playerIsNext: !game.state.playerIsNext,
         values: expectedValues
@@ -67,7 +67,7 @@ describe("<Game/>", () => {
   describe("resetGame()", () => {
     test("should rest game to default", () => {
       spyOn(game, "setState");
-      const result = game.resetGame();
+      game.resetGame();
       expect(game.setState).toHaveBeenCalledWith({
         values: Array(9).fill(null),
         playerIsNext: true
