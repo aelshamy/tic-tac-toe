@@ -2,7 +2,7 @@
 
 exports[`<Game/> it will match the snapshot 1`] = `undefined`;
 
-exports[`<Game/> render() should render correctly 1`] = `
+exports[`<Game/> render() should render game correctly 1`] = `
 <div
   className="game"
 >
