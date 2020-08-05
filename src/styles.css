@@ -1,50 +1,47 @@
 .game {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+}
+.grid {
+  background-color: "#444";
+  display: grid;
+  grid-gap: 2;
 }
 
 .square {
-    background: #fff;
-    border: 1px solid #999;
-    float: left;
-    font-size: 74px;
-    margin-left: -1px;
-    margin-top: -1px;
-    height: 100px;
-    width: 100px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  background-color: "#fff";
+  width: 100px;
+  height: 100px;
 }
 
 .square:focus,
 .result button:focus {
-    outline: none;
+  outline: none;
 }
 
 .result {
-    text-align: center;
+  text-align: center;
 }
 
 .result h3 {
-    font-size: 40px;
+  font-size: 40px;
 }
 
 .result h3.winner {
-    color: green;
+  color: green;
 }
 
 .result h3.loser {
-    color: red;
+  color: red;
 }
 
 .result button {
-    font-size: 40px;
-    border: 1px solid #999;
-    background: azure;
-    font-weight: bold;
-    cursor: pointer;
+  font-size: 40px;
+  border: 1px solid #999;
+  background: azure;
+  font-weight: bold;
+  cursor: pointer;
 }

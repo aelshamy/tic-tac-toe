@@ -1,76 +1,81 @@
-import React, { Component } from "react";
+import React, { useReducer } from "react";
 import Board from "./Board";
+import reducer from "./reducer";
 
-class Game extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      values: Array(9).fill(null),
-      playerIsNext: true
-    };
-  }
-
-  calculateWinner(values) {
-    const winingSquares = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6]
-    ];
-    for (let i = 0; i < winingSquares.length; i++) {
-      const [a, b, c] = winingSquares[i];
-      if (values[a] && values[a] === values[b] && values[a] === values[c]) {
-        return values[a];
-      }
-    }
-    return null;
-  }
-
-  handleClick = idx => {
-    const values = [...this.state.values];
-    if (this.calculateWinner(values) || values[idx]) {
-      return;
-    }
-    values[idx] = this.state.playerIsNext ? "X" : "O";
-    this.setState({
-      playerIsNext: !this.state.playerIsNext,
-      values
-    });
-  };
-
-  resetGame = () => {
-    this.setState({
-      values: Array(9).fill(null),
-      playerIsNext: true
-    });
-  };
-
-  render() {
-    const winner = this.calculateWinner(this.state.values);
-    const playerIsWinner = winner && !this.state.playerIsNext;
-
-    return (
-      <div className="game">
-        {winner ? (
-          <div className="result">
-            {playerIsWinner ? (
-              <h3 className="winner">Good Job You won :)</h3>
-            ) : (
-              <h3 className="loser">Sorry, you did not make it this time :(</h3>
-            )}
-
-            <button onClick={this.resetGame}>Play Again</button>
-          </div>
-        ) : (
-          <Board values={this.state.values} onClick={this.handleClick} />
-        )}
-      </div>
+const generateGrid = (rows, columns, mapper) => {
+  return Array(rows)
+    .fill()
+    .map(() =>
+      Array(columns)
+        .fill()
+        .map(mapper)
     );
-  }
-}
+};
+const newTicTacToeGrid = () => generateGrid(3, 3, () => null);
+
+const checkThree = (a, b, c) => {
+  if (!a || !b || !c) return false;
+  return a === b && b === c;
+};
+
+const flatten = arr => arr.reduce((acc, cur) => [...acc, ...cur], []);
+
+const checkForWin = flattenGrid => {
+  const [nw, n, ne, w, c, e, sw, s, se] = flattenGrid;
+  return (
+    checkThree(nw, n, ne) ||
+    checkThree(w, c, e) ||
+    checkThree(sw, s, se) ||
+    checkThree(nw, w, sw) ||
+    checkThree(n, c, s) ||
+    checkThree(ne, e, se) ||
+    checkThree(nw, c, se) ||
+    checkThree(ne, c, sw)
+  );
+};
+
+const checkForDraw = flattenGrid => {
+  return (
+    !checkForWin(flattenGrid) &&
+    flattenGrid.filter(Boolean).length === flattenGrid.length
+  );
+};
+
+const NEXT_TURN = {
+  O: "X",
+  X: "O"
+};
+
+const getInitialState = () => ({
+  grid: newTicTacToeGrid(),
+  status: "inProgress",
+  turn: "X"
+});
+
+const Game = () => {
+  const [state, dispatch] = useReducer(reducer, getInitialState());
+  const { grid, status, turn } = state;
+
+  const handleClick = (x, y) => {
+    dispatch({ type: "CLICK", payload: { x, y } });
+  };
+
+  const reset = () => {
+    dispatch({ type: "RESET" });
+  };
+
+  return (
+    <div className="game">
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div>Next turn: {turn}</div>
+        <div>{status === "success" ? `${turn} won!` : null}</div>
+        <button onClick={reset} type="button">
+          Reset
+        </button>
+      </div>
+      <Board grid={grid} onClick={handleClick} />
+    </div>
+  );
+};
 
 export default Game;

@@ -3,24 +3,12 @@
 exports[`<Game/> it will match the snapshot 1`] = `undefined`;
 
 exports[`<Game/> render() should render game correctly 1`] = `
-<div
-  className="game"
->
-  <Board
-    onClick={[Function]}
-    values={
-      Array [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-      ]
-    }
-  />
+<div>
+  <header>
+    <h1>
+      Tic Tac Toe in React
+    </h1>
+  </header>
+  <Game />
 </div>
 `;

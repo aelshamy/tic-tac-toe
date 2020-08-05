@@ -15,7 +15,7 @@ describe("<Game/>", () => {
     expect(toJson(c)).toMatchSnapshot();
   });
 
-  test("should intialize with the default values", () => {
+  test("should initialize with the default values", () => {
     expect(game.state).not.toBe(null);
     expect(game.state.values.length).toEqual(9);
     expect(game.state.values[0]).toEqual(null);
